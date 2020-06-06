@@ -1,18 +1,18 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
-import ExampleCard from './components/ExampleCard';
+import TreeForm from './components/TreeForm';
 
-const Products = () => (
+const AddTrees = () => (
   <Container className="dashboard">
     <Row>
       <Col md={12}>
-        <h3 className="page-title">PRODUCTS</h3>
+        <h3 className="page-title">ADD TREE</h3>
       </Col>
     </Row>
     <Row>
-      <ExampleCard />
+      <TreeForm />
     </Row>
   </Container>
 );
 
-export default Products;
+export default AddTrees;

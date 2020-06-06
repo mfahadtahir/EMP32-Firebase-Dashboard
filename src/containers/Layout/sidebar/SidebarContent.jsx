@@ -17,7 +17,7 @@ class SidebarContent extends Component {
     return (
       <div className="sidebar__content">
         <SidebarLink title="Dashboard" icon="home" route="/dashboard" onClick={this.hideSidebar} />
-        <SidebarLink title="Add New Tree" icon="cart" route="/addATree" onClick={this.hideSidebar} />
+        <SidebarLink title="Add New Tree" icon="cart" route="/addTree" onClick={this.hideSidebar} />
       </div>
     );
   }

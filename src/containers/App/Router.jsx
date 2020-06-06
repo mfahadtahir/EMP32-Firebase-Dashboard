@@ -8,7 +8,7 @@ import LogIn from '../LogIn/components/LogInForm';
 import ForgetPass from '../LogIn/components/ForgetPass';
 import SignUp from '../LogIn/components/SignUpForm';
 import Dashboard from '../Dashboard/index';
-import Products from '../Products/index';
+import AddTrees from '../AddTrees/index';
 
 
 class wrappedRoutes extends Component {
@@ -39,7 +39,7 @@ class wrappedRoutes extends Component {
         <div className="container__wrap">
             <Switch>
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/products" component={Products} />
+              <Route path="/addTree" component={AddTrees} />
             </Switch>
         </div></>
             :
