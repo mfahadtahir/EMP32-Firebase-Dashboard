@@ -1,0 +1,49 @@
+[debug] [2020-06-08T19:30:24.984Z] ----------------------------------------------------------------------
+[debug] [2020-06-08T19:30:24.985Z] Command:       /usr/local/bin/firebase /home/maxplanko89/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy --only functions
+[debug] [2020-06-08T19:30:24.985Z] CLI Version:   7.14.0
+[debug] [2020-06-08T19:30:24.986Z] Platform:      linux
+[debug] [2020-06-08T19:30:24.986Z] Node Version:  v12.13.1
+[debug] [2020-06-08T19:30:24.986Z] Time:          Tue Jun 09 2020 00:30:24 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-06-08T19:30:24.986Z] ----------------------------------------------------------------------
+[debug] [2020-06-08T19:30:24.986Z] 
+[debug] [2020-06-08T19:30:24.992Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-08T19:30:24.992Z] > authorizing via signed-in user
+[debug] [2020-06-08T19:30:24.992Z] [iam] checking project co2tutor-fiver for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-06-08T19:30:24.993Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/co2tutor-fiver:testIamPermissions  
+
+[debug] [2020-06-08T19:30:26.612Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'co2tutor-fiver'...
+[info] 
+[info] i  deploying functions
+[debug] [2020-06-08T19:30:27.838Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2020-06-08T19:30:27.840Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/co2tutor-fiver/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-06-08T19:30:27.841Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/co2tutor-fiver/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-06-08T19:30:48.270Z] Error: getaddrinfo EAI_AGAIN serviceusage.googleapis.com
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:60:26)
+[error] 
+[error] Error: Server Error. getaddrinfo EAI_AGAIN serviceusage.googleapis.com

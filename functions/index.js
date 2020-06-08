@@ -5,29 +5,112 @@ admin.initializeApp(functions.config().firebase);
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 
-exports.testingData = functions.pubsub.schedule('every 10000 minutes').onRun(context => {
+exports.testingData = functions.pubsub.schedule('every 1 minutes').onRun(context => {
   admin.database().ref(`/`).once('value')
   .then(results => {
-    //  const somethingSnapshot = results.val();
-     results.forEach(element => {
+      // initialization of variables
+    results.forEach(element => {
+      let dataHistory = {},
+          date = new Date().getDate() / 7,
+          month = new Date().getMonth(), 
+          year = new Date().getFullYear() ,
+          months = [
+            'jan', 'feb', 'mar', 'apr',
+            'may', 'jun', 'jul', 'aug',
+            'sep', 'oct', 'nov', 'dec'
+          ]; 
+      date = Math.ceil(date);
+      // Console various data
       console.log("Single History: ",element.key, element.val().history);
-      // element.val().history.forEach()
-      let data = {};
-      data.treeid = element.key;
-      data.history = element.val().history;
-      admin.firestore().collection('trees').doc(element.key).set(data)
-     });
-     // Do something with the snapshot
- })
+      console.log(date, month, year);
+
+      // adjusting some stuff for 
+      dataHistory.treeid = element.key;
+      dataHistory.history = element.val().history;
+      
+      // storing in firestore
+      admin.firestore()
+      .collection(`trees/${element.key}/${months[month]}-${year}`).doc(`week-${date}`).set(dataHistory)
+        // .then(() => {
+        //   admin.firestore().collection(`trees`).doc(element.key).collection(`${months[month]}-${year}`).get()
+        //   .then(records => {
+        //     records.forEach()
+        //   })
+        // })
+      })
+    })
+  return null;
 })
 
+// admin.firestore().collection('trees').doc(element.key).set(data)
 
-exports.weekData = functions.pubsub.schedule('1 of month 00:00').onRun((context) => {
-  console.log('This will be run every 5 sed!');
+exports.monthData = functions.pubsub.schedule('1 of month 00:00').onRun((context) => {
+  admin.database().ref(`/`).once('value')
+  .then(results => {
+      // initialization of variables
+    results.forEach(element => {
+      let dataHistory = {},
+          date = new Date().getDate() / 7,
+          month = new Date().getMonth() - 1, 
+          year = new Date().getFullYear() ,
+          months = [
+            'jan', 'feb', 'mar', 'apr',
+            'may', 'jun', 'jul', 'aug',
+            'sep', 'oct', 'nov', 'dec'
+          ];
+      if(month<0) month = 11;
+      date = Math.ceil(date);
+      
+      // Console various data
+      console.log("Single History: ",element.key, element.val().history);
+      console.log(date, month, year);
+
+      // adjusting some stuff for 
+      dataHistory.treeid = element.key;
+      dataHistory.history = element.val().history;
+      // storing in firestore
+      admin.firestore()
+      .collection(`trees/${element.key}/${months[month]}-${year}`).doc(`week-${date}`).set(dataHistory)
+        // .then(() => {
+        //   admin.firestore().collection(`trees`).doc(element.key).collection(`${months[month]}-${year}`).get()
+        //   .then(records => {
+        //     records.forEach()
+        //   })
+        // })
+      })
+    })
   return null;
 });
 
-exports.monthData = functions.pubsub.schedule('1,8,15,22 of month 00:00').onRun((context) => {
-  console.log('This will be run every 5 minutes!');
+exports.weekData = functions.pubsub.schedule('8,15,22 of month 00:00').onRun((context) => {
+  admin.database().ref(`/`).once('value')
+  .then(results => {
+      // initialization of variables
+    results.forEach(element => {
+      let dataHistory = {},
+          date = new Date().getDate() / 7,
+          month = new Date().getMonth(), 
+          year = new Date().getFullYear(),
+          months = [
+            'jan', 'feb', 'mar', 'apr',
+            'may', 'jun', 'jul', 'aug',
+            'sep', 'oct', 'nov', 'dec'
+          ]; 
+      date = Math.ceil(date);
+      
+      // Console various data
+      console.log("Single History: ",element.key, element.val().history);
+      console.log(date, month, year);
+
+      // adjusting some stuff for 
+      dataHistory.treeid = element.key;
+      dataHistory.history = element.val().history;
+      
+      // storing in firestore
+      admin.firestore()
+      .collection(`trees`).doc(element.key)
+      .collection(`${months[month]}-${year}`).doc(`week-${date}`).set(dataHistory);
+      })
+    })
   return null;
-});
+})
